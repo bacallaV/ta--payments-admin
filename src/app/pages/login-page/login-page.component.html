@@ -1,1 +1,46 @@
-<p>login-page works!</p>
+<div class="login-container">
+  <form class="login-form" [formGroup]="form" (submit)="logIn()">
+    <h1>Log in</h1>
+
+    <mat-form-field>
+      <mat-label>User</mat-label>
+      <input
+        type="text"
+        matInput
+        required
+        formControlName="username"
+      />
+      @if (username.invalid && username.errors && username.touched) {
+        @if (username.errors['required']) {
+          <mat-error>Required field</mat-error>
+        }
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        required
+        formControlName="password"
+      />
+
+      @if (password.invalid && password.errors && password.touched) {
+        @if (password.errors['required']) {
+          <mat-error>Required field</mat-error>
+        }
+      }
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      type="submit"
+      [disabled]="this.status === 'loading'"
+    >
+      Let me in
+    </button>
+
+    <mat-error>{{ errorMsg }}</mat-error>
+  </form>
+</div>

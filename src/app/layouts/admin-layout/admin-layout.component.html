@@ -1,3 +1,29 @@
-<p>admin-layout works!</p>
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Menu</span>
+</mat-toolbar>
 
-<router-outlet />
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+
+    <button class="menu-button" type="button" mat-button>
+      <a routerLink="/admin">Home</a>
+    </button>
+
+    <button class="menu-button" type="button" mat-button>
+      <a routerLink="/admin/customers">Customers</a>
+    </button>
+
+    <button class="menu-button" type="button" mat-button>
+      <a routerLink="/admin/payments">Payments</a>
+    </button>
+  </mat-drawer>
+
+  <div class="content-container">
+    <router-outlet />
+  </div>
+
+</mat-drawer-container>
+

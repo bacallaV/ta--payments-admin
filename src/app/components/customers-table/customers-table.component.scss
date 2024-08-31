@@ -1,3 +1,9 @@
+.mat-mdc-table {
+  width: 100%;
+  max-height: 60vh;
+  overflow: auto;
+}
+
 .actions-container {
   display: flex;
   flex-direction: row;

@@ -46,7 +46,6 @@ export class PaymentsPageComponent {
     });
 
     dialogRef.afterClosed().subscribe((data?: IPayment) => {
-      console.log('hey');
       if (!data) return;
 
       this.addPayment(data);
@@ -54,9 +53,10 @@ export class PaymentsPageComponent {
   }
 
   private addPayment(payment: IPayment): void {
-    console.log('add/edit', payment);
     this.paymentsService.createPayment(payment).subscribe({
-      next: () => {},
+      next: (p) => {
+        this.payments = [...this.payments, p];
+      },
       error: (err) => {
         console.error(err);
       },

@@ -1,1 +1,33 @@
-<p>payment-form works!</p>
+<div class="form-container">
+  <h2>Payment form</h2>
+
+  <form class="form" [formGroup]="form" (submit)="submitForm()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Customer</mat-label>
+      <mat-select formControlName="customerId">
+        @for (opt of customersOptions; track $index) {
+          <mat-option [value]="opt.value">{{opt.name}}</mat-option>
+        }
+      </mat-select>
+      <mat-error>Select an option</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Amount</mat-label>
+      <input matInput placeholder="Amount" formControlName="amount" type="number">
+      <mat-error>Invalid amount</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Concept</mat-label>
+      <textarea matInput placeholder="Concept" formControlName="concept"></textarea>
+      <mat-error>Concept required</mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-button [disabled]="form.invalid || isLoading">
+      Guardar
+    </button>
+
+  </form>
+</div>

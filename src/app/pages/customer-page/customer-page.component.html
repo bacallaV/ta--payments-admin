@@ -1,1 +1,27 @@
-<p>customer-page works!</p>
+<section>
+  <h1>Customers</h1>
+
+  <div class="data-container">
+    <div class="actions-container">
+      <mat-form-field class="example-form-field">
+        <mat-label>Search by name</mat-label>
+        <input matInput type="text" [formControl]="name">
+        @if (name.value !== '') {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="name.patchValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button type="button" (click)="openCustomerForm()">Add customer</button>
+    </div>
+
+    <div class="table-container">
+      <app-customers-table
+        [customers]="customers"
+        (onEdit)="openCustomerForm($event)"
+        (onDelete)="deleteCustomer($event)"
+      ></app-customers-table>
+    </div>
+  </div>
+</section>

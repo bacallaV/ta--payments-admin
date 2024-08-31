@@ -13,7 +13,7 @@ import { IPayment } from '../utils/interfaces/payment.interface';
 })
 export class PaymentsService {
 
-  private readonly API_URL = `${environment.API_URL}/payments`
+  private readonly API_URL = `${environment.API_URL}/payments`;
 
   constructor(
     private readonly httpService: HttpClient,

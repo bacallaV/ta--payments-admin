@@ -10,6 +10,7 @@ import {
   CustomerPageComponent,
   PaymentsPageComponent,
 } from './pages';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,8 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',

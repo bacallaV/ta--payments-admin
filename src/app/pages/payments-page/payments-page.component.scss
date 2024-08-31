@@ -1,0 +1,22 @@
+section {
+  padding: 2rem;
+}
+
+h1 {
+  color: rgb(209, 194, 203);
+}
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 0 1.5rem 0;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}

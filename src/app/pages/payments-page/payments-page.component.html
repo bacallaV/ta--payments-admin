@@ -1,1 +1,17 @@
-<p>payments-page works!</p>
+<section>
+  <h1>Payments</h1>
+
+
+  <div class="data-container">
+    <div class="actions-container">
+      <button mat-flat-button type="button" (click)="openPaymentForm()">Add payment</button>
+    </div>
+
+    <div class="table-container">
+      <app-payments-table
+        [payments]="payments"
+        (onSortChanged)="fetchPayments($event)"
+      ></app-payments-table>
+    </div>
+  </div>
+</section>

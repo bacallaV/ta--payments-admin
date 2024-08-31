@@ -52,8 +52,8 @@ export class LoginPageComponent {
     }
 
     this.status = 'loading';
-    this.authService.logIn(this.username.value, this.password.value).subscribe({
-      next: (res) => {
+    this.authService.logIn(this.username.value.trim(), this.password.value.trim()).subscribe({
+      next: () => {
         this.status = 'success';
         this.router.navigate(['/admin']);
       },

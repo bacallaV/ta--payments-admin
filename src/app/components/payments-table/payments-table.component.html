@@ -1,0 +1,50 @@
+<mat-table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  (matSortChange)="changeSort($event)"
+  class="mat-elevation-z8"
+>
+
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef sortActionDescription="Sort by id">
+      ID
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+  </ng-container>
+
+  <!-- CustomerId Column -->
+  <ng-container matColumnDef="customerId">
+    <mat-header-cell *matHeaderCellDef sortActionDescription="Sort by customer id">
+      Customer ID
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.customerId}} </mat-cell>
+  </ng-container>
+
+  <!-- Amount Column -->
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by amount">
+      Amount
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+  </ng-container>
+
+  <!-- Concept Column -->
+  <ng-container matColumnDef="concept">
+    <mat-header-cell *matHeaderCellDef sortActionDescription="Sort by concept">
+      Concept
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.concept}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date">
+      Date
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.date | date }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

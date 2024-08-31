@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CustomerFormComponent, CustomersTableComponent } from '../../components';
 
 import { CustomersService } from '../../services/customers.service';
-import { ICustomer } from '../../utils/interfaces/customers.interface';
+import { ICreateCustomerDto, ICustomer, IEditCustomerDto } from '../../utils/interfaces/customers.interface';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -61,18 +61,44 @@ export class CustomerPageComponent {
       });
   }
 
-  public openCustomerForm(payment?: any): void {
+  public openCustomerForm(customer?: ICustomer): void {
     const dialogRef = this.dialog.open(CustomerFormComponent, {
       width: '90vw',
       height: '80vh',
-      data: payment,
+      data: customer,
     });
 
-    dialogRef.afterClosed().subscribe((data?: ICustomer) => {
-      console.log('hey');
-      if (!data) return;
+    dialogRef.afterClosed().subscribe((response?: {mode: 'edit' | 'create', data: ICreateCustomerDto | IEditCustomerDto}) => {
+      if (!response) return;
 
-      // this.addPayment(data);
+      if (response.mode === 'edit') {
+        this.editCustomer(customer!.id, response.data as IEditCustomerDto);
+      } else {
+        this.createCustomer(response.data as ICreateCustomerDto);
+      }
+    });
+  }
+
+  private createCustomer(data: ICreateCustomerDto): void {
+    this.customerService.create(data).subscribe({
+      next: (response) => {
+        this.customers = [...this.customers, response];
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  private editCustomer(id: string, data: IEditCustomerDto): void {
+    this.customerService.patch(id, data).subscribe({
+      next: (customer) => {
+        const tempCustomers = this.customers.filter(c => c.id !== id);
+        this.customers = [...tempCustomers, customer];
+      },
+      error: (err) => {
+        console.error(err);
+      },
     });
   }
 

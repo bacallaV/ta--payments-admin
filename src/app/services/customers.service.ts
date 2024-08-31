@@ -28,8 +28,8 @@ export class CustomersService {
     return this.httpService.post<ICustomer>(`${this.API_URL}`, customer);
   }
 
-  public patch(customer: IEditCustomerDto): Observable<ICustomer> {
-    return this.httpService.patch<ICustomer>(`${this.API_URL}`, customer);
+  public patch(id: string, customer: IEditCustomerDto): Observable<ICustomer> {
+    return this.httpService.patch<ICustomer>(`${this.API_URL}/${id}`, customer);
   }
 
   public delete(customer: ICustomer): Observable<void> {

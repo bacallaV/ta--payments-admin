@@ -1,1 +1,29 @@
-<p>customer-form works!</p>
+<div class="form-container">
+  <h2>Customer form</h2>
+
+  <form class="form" [formGroup]="form" (submit)="submitForm()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" type="text">
+      <mat-error>Field required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Lastname</mat-label>
+      <input matInput placeholder="Lastname" formControlName="lastname" type="text">
+      <mat-error>Field required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput placeholder="Date of Birth" formControlName="dateOfBirth" type="date">
+      <mat-error>Field required</mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-button [disabled]="form.invalid">
+      Guardar
+    </button>
+
+  </form>
+</div>

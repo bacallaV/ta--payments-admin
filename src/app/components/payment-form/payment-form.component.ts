@@ -34,7 +34,7 @@ export class PaymentFormComponent implements OnInit {
   public customersOptions: {
     value: string,
     name: string,
-  }[] = []
+  }[] = [];
 
   constructor(
     private readonly formBuilder: FormBuilder,
